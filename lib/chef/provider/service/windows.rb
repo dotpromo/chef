@@ -33,7 +33,7 @@ class Chef::Provider::Service::Windows < Chef::Provider::Service
   AUTO_START = 'auto start'
   DISABLED = 'disabled'
   TIMEOUT  = 60
-  
+
   def whyrun_supported?
     false
   end
@@ -65,7 +65,7 @@ class Chef::Provider::Service::Windows < Chef::Provider::Service
         @new_resource.updated_by_last_action(true)
       end
     else
-        Chef::Log.debug "#{@new_resource} does not exist - nothing to do"
+      Chef::Log.debug "#{@new_resource} does not exist - nothing to do"
     end
   end
 
@@ -153,12 +153,12 @@ class Chef::Provider::Service::Windows < Chef::Provider::Service
   end
 
   def command_timeout
-	timeout   = @new_resource.timeout if @new_resource.timeout
-	timeout ||= TIMEOUT
-	Chef::Log.debug  "service command timeout [#{timeout}]"
-	
+    timeout = @new_resource.timeout if @new_resource.timeout
+    timeout ||= TIMEOUT
+    Chef::Log.debug "service command timeout [#{timeout}]"
+
     Timeout.timeout(timeout) do
-	  yield
+      yield
     end
   end
 end
